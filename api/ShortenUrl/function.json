@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["post"],
-      "route": "ShortenUrl"
+      "route": "shortenUrl"
     },
     {
       "type": "http",

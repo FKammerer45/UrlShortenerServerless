@@ -1,40 +1,20 @@
-const { BlobServiceClient } = require('@azure/storage-blob');
+const urls = require('../ShortenUrl/index').urls;
 
-const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
-const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
-//test trigger redeploy 4
 module.exports = async function (context, req) {
-    const shortId = context.bindingData.shortId;
+    const { id } = context.bindingData;
 
-    if (shortId) {
-        const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-        const containerClient = blobServiceClient.getContainerClient(containerName);
-        const blockBlobClient = containerClient.getBlockBlobClient(shortId);
-
-        try {
-            const response = await blockBlobClient.download(0);
-            const longUrl = response.readableStreamBody.read(response.contentLength).toString();
-
-            context.res = {
-                status: 302,
-                headers: {
-                    "Location": longUrl
-                }
-            };
-        } catch (error) {
-            context.res = {
-                status: 404,
-                body: {
-                    error: "Short URL not found"
-                }
-            };
-        }
+    if (urls.has(id)) {
+        context.res = {
+            status: 302,
+            headers: {
+                'Location': urls.get(id)
+            },
+            body: ''
+        };
     } else {
         context.res = {
-            status: 400,
-            body: {
-                error: "Please pass a shortId in the request URL"
-            }
+            status: 404,
+            body: 'Short URL not found'
         };
     }
 };

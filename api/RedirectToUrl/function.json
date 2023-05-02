@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "RedirectToUrl/{shortId}"
+      "route": "{id}"
     },
     {
       "type": "http",
