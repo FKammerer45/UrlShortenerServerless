@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
-
+//test
 module.exports = async function (context, req) {
     if (req.body && req.body.longUrl) {
         const longUrl = req.body.longUrl;
