@@ -6,7 +6,7 @@ name: Deploy to Azure Function App
 on:
   push:
     branches:
-      - main  # Replace 'main' with the correct branch name if needed
+      - master  # Replace 'main' with the correct branch name if needed
 
 jobs:
   build_and_deploy:
