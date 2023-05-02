@@ -2,7 +2,7 @@ const { BlobServiceClient } = require('@azure/storage-blob');
 
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
-//test trigger redeploy 1
+//test trigger redeploy 2
 module.exports = async function (context, req) {
     const shortId = context.bindingData.shortId;
 
